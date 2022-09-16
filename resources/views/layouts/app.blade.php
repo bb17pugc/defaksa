@@ -7,11 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Restaurants</title>
 
     <!-- Scripts -->
     <script src="{{asset('/js/html2canvas.js')}}"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -34,15 +36,37 @@
     <div id="app" style="direction: rtl;" >
 
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 20px;" >
-        <h3 class="mx-4" >
-                                    {{ Auth::user()->name }}
-                        </h3>
+        <nav class="navbar navbar-expand-md navbar-light bg-brown shadow-sm" style="padding: 20px;" >
+        @if (!auth()->user())
+            <div>
+            <h3 class="text-center text-white" >تسجيل الدخول</h3>
+            </div>
+        @endif
+        @if (auth()->user())
 
+                        <div class="row" >
 
-            <div class="container" style="direction: rtl;" >
+                        <div class="d-flex" >
+                               <div id="btnOpenMenusMobile" >
+                               <i class="fa fa-bars" >
+                                </i>
+                               </div>
+                                <div>
+                                    <h4  class="on-margin text-white" >
+                                                {{ Auth::user()->name }}
+</h4>
+                                    <label for="" class="user-email on-margin" >
+                                    {{ Auth::user()->email }}
+                                    </label>
+                                </div>
+                        </div>
 
-                <div class="" id="navbarSupportedContent">
+                        </div>
+                        @endif
+
+            <div class="container" style="direction: rtl;" id="navbarSupportedContent" >
+
+                <div class="" >
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
@@ -52,29 +76,19 @@
                     <ul class="navbar-nav ms-auto" style="margin:0px !important" >
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
                         @else
-                              <li class="nav-item">
+                              <li class="nav-item px-2 py-2">
                               <a class="form-control mx-2 text-center nav-link-click" href="/restaurant">
                                     مطعم
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item px-2 py-2">
                                 <a class="form-control mx-2 text-center nav-link-click"  href="/links" >
                                         الروابط
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item py-2">
                                 <a class="form-control mx-2 text-center nav-link-click"  href="/qr" >
                                 ريال قطري
                                 </a>                                </li>
@@ -88,10 +102,17 @@
 
             </div>
 
-            <div>
+            @if (auth()->user())
 
+            <div class="d-flex" >
                 <div class="px-2 py-2" >
-                <a class="btn btn-primary" href="{{ route('logout') }}"
+                    <a class="btn btn-danger" href="/change-password">
+                    إعدادات
+
+                    </a>
+                </div>
+                <div class="px-2 py-2" >
+                      <a class="btn btn-primary" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -101,6 +122,7 @@
                                     </form>
                 </div>
             </div>
+            @endif
         </nav>
 
         <main class="py-4">
@@ -109,3 +131,11 @@
     </div>
 </body>
 </html>
+
+<script>
+    $(document).ready(function(){
+        $("#btnOpenMenusMobile .fa-bars").on('click',function(){
+            $("#navbarSupportedContent").toggle();
+        })
+    })
+</script>

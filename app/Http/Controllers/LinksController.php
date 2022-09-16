@@ -40,7 +40,9 @@ class LinksController extends Controller
     public function delete()
     {
         $id = $_GET['id'];
-        $data =  Link::find($id);
+        $item_id = $_GET['item_id'];
+
+        $data =  Link::find($item_id);
         $links = json_decode($data->links);
         unset($links[--$id]);
         $data_links = array_values($links);

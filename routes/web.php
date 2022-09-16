@@ -14,19 +14,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Auth::routes();
 
 // routes for restaurants
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => '','middleware' => 'auth'], function () {
+
+    Route::get('change-password',[App\Http\Controllers\ChangePasswordController::class, 'index']);
+Route::post('change-password', [App\Http\Controllers\ChangePasswordController::class, 'store'])->name('change.password');
+Route::post('store-details', [App\Http\Controllers\ChangePasswordController::class, 'storeDetails'])->name('store-details');
+
 Route::get('/restaurant', [App\Http\Controllers\RestaurantManagersController::class, 'index'])->name('restaurant-index');
 Route::post('/restaurant-add', [App\Http\Controllers\RestaurantManagersController::class, 'add'])->name('restaurant-add');
-
 // routes for links
 Route::get('/menu-links',[App\Http\Controllers\LinksController::class, 'LinksExplore'])->name('explore');
-Route::get('/qr',[App\Http\Controllers\QRController::class, 'generateQR'])->name('qr-generate');
 
 Route::group(['prefix' => 'links'], function () {
     Route::get('/',[App\Http\Controllers\LinksController::class, 'Links'])->name('links');
@@ -34,5 +40,9 @@ Route::group(['prefix' => 'links'], function () {
     Route::post('/add-link',[App\Http\Controllers\LinksController::class, 'AddLinksLink'] )->name('add-link');
     Route::get('/delete',[App\Http\Controllers\LinksController::class, 'delete'])->name('delete');
 });
-Route::post('/save-qr' ,[App\Http\Controllers\LinksController::class, 'SaveQR']);
 
+
+    Route::get('/qr',[App\Http\Controllers\QRController::class, 'generateQR'])->name('qr-generate');
+
+Route::post('/save-qr' ,[App\Http\Controllers\LinksController::class, 'SaveQR']);
+});

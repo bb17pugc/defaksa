@@ -139,7 +139,7 @@
                             <a href="{{$link[1]}}">{{$link[1]}}</a>
                         </td>
                         <td>
-                        <button class="btn btn-danger" onclick="deleteItem('{{$index}}')" >
+                        <button class="btn btn-danger" onclick="deleteItem('{{$index}},{{$links->id}}')" >
                         حذف
                         </button>
                         </td>
@@ -163,13 +163,13 @@
 </div>
 @endsection
 <script>
-    function deleteItem(id)
+    function deleteItem(id,item_id)
     {
         if (!confirm("Do you want to delete")){
           return ;
         }
         $.ajax({
-            url: "/links/delete?id="+id,
+            url: "/links/delete?id="+id+"&item_id="+item_id,
             type : 'GET',
             success:function(e)
             {

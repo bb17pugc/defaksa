@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Http\Request;
+use Auth as UserAuth;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Hash;
+
 
 class LoginController extends Controller
 {
@@ -37,4 +41,30 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function login(Request $request)
+    {
+        if(!User::where('email','=','admin@gmail.com')->exists())
+        {
+            User::create([
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('Admin777.'),
+            ]);
+        }
+
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $credentials = $request->only('email', 'password');
+        if (UserAuth::attempt($credentials)) {
+
+            return redirect('/restaurant');
+        }
+
+        return redirect("/restaurant")->withSuccess('Oppes! You have entered invalid credentials');
+    }
+
 }
