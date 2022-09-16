@@ -139,7 +139,7 @@
                             <a href="{{$link[1]}}">{{$link[1]}}</a>
                         </td>
                         <td>
-                        <button class="btn btn-danger" onclick="deleteItem('{{$index}},{{$links->id}}')" >
+                        <button class="btn btn-danger" onclick="deleteItem('{{$index}}','{{$links->id}}')" >
                         حذف
                         </button>
                         </td>
