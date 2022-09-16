@@ -10,6 +10,7 @@
         </a>
     </div>
 
+    @include('layouts.messages')
     <form action="{{route('add-feature', request()->route('subdomain'))}}" method="POST" enctype="multipart/form-data" >
     {{csrf_field()}}
         <input type="hidden" name="id" value="{{$links == '' ? 0 : $links->id }}" >
@@ -89,7 +90,7 @@
 
         <div class="jumbotron mx-2 my-2 py-2" >
         <div class="col-lg-6 col-md-12">
-            @include('layouts.messages')
+
             {{csrf_field()}}
             <div class="form-group">
                 <label for="name">اسم </label>

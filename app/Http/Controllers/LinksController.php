@@ -125,6 +125,7 @@ class LinksController extends Controller
                 'features->selected' =>  $selected
             ]);
         }
+        session()->flash('success', 'تم انشاء الصنف بنجاح');
 
         return redirect()->to('/links');
     }
@@ -158,17 +159,15 @@ class LinksController extends Controller
             array_push($data, $link);
             Link::create([
                 'features->bg_image' =>"",
-                'features->bg_color' => "",
-                'features->link_color' => "",
-                'features->frame_color' => "",
-                'features->switch_frame_color' => "",
-
+                'features->bg_color' => "#ffffff",
+                'features->link_color' => "#000000",
+                'features->frame_color' => "#000000",
+                'features->switch_frame_color' => "#000000",
                 'features->selected' => "",
-
-                'restaurant_id' => Auth::user()->restaurant->id,
                 'links'=> json_encode($data)
             ]);
         }
+        session()->flash('success', 'تم انشاء الصنف بنجاح');
 
         return redirect()->to('/links');
     }

@@ -69,7 +69,7 @@ body
 </head>
 <body>
 
-<div class="col-md-12 col-sm-12 col-lg-12" >
+<div class="col-md-12 col-sm-12 col-lg-4 offset-lg-4" >
 
 <br>
 <br>
@@ -83,6 +83,7 @@ body
 </label>
 </div>
 <div class="container-links" >
+
     @if(count((array)json_decode($links->links)) > 0)
         @foreach(json_decode($links->links) as $index=>$item)
             <a href="{{$item[1]}}">{{$item[0]}}</a>
