@@ -6,7 +6,7 @@
     <div>
         <label class="btn-lg brand" >الروابط</label>
         <a href="{{route('explore', request()->route('subdomain'))}}" class="mx-4 btn btn-primary" >
-            Explore
+        يكتشف
         </a>
     </div>
 
@@ -27,7 +27,7 @@
                                     <div class="form-control d-flex align-items-center">
 
                                         <input type="radio" value='color' name="selected" {{$links->features['selected'] == $links->features['bg_color'] ? 'checked' : ''  }} >
-                                        <input type="color" name="bgColor" id="color" class="input-color" value="{{ ($links == '' ? '' :  $links->features == null) ? '' : $links->features['bg_color']  }}"  placeholder="اللون" required>
+                                        <input type="color" name="bgColor" id="color" class="mx-2 input-color" value="{{ ($links == '' ? '' :  $links->features == null) ? '' : $links->features['bg_color']  }}"  placeholder="اللون" required>
                                     </div>
                                     <div class="form-group  my-2  border-radius-10 box-color" style="background-color:{{ $links->features['bg_color']  }}" >
 
@@ -69,10 +69,10 @@
                                     <label for="">
                                     لون الاطار
                                     </label>
-                                    <div class="form-control d-flex align-items-center">
+                                    <div class="form-control  d-flex align-items-center">
 
                                         <input type="checkbox" name="switchFrameColor" id="color" class="input-color" {{ ($links == '' ? '' :  $links->features == null) ? '' : (!isset($links->features['switch_frame_color']) ? '' :  ($links->features['switch_frame_color'] == 'on' ? 'checked' : '' )  )  }}  placeholder="اللون">
-                                        <input type="color" name="frameColor" id="color" class="input-color" value="{{ ($links == '' ? '' :  $links->features == null) ? '' : (!isset($links->features['frame_color']) ? '' : $links->features['frame_color'])  }}"  placeholder="اللون" required>
+                                        <input type="color" name="frameColor" id="color" class="mx-2 input-color" value="{{ ($links == '' ? '' :  $links->features == null) ? '' : (!isset($links->features['frame_color']) ? '' : $links->features['frame_color'])  }}"  placeholder="اللون" required>
                                     </div>
                             </div>
                         </div>

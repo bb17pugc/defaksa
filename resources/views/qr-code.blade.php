@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <button class="btn btn-primary w-25" id="print-qr">طباعة</button>
-            <button class="btn btn-primary w-25" onclick="doCapture()" id="download">Download</button>
+            <button class="btn btn-primary w-25" onclick="doCapture()" id="download">تحميل</button>
 
     <div class="container py-2"  id="containerQrCode" >
 

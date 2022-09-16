@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Restaurants</title>
+    <title>{{env('APP_URL')}}</title>
 
     <!-- Scripts -->
     <script src="{{asset('/js/html2canvas.js')}}"></script>
@@ -115,7 +115,7 @@
                       <a class="btn btn-primary" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('تسجيل خروج') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
