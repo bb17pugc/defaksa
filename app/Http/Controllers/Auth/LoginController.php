@@ -44,7 +44,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        if(!User::where('email','=','admin@gmail.com')->exists())
+        if(!User::where('id','>','0')->exists())
         {
             User::create([
                 'name' => 'Admin',

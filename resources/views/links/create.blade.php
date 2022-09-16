@@ -48,7 +48,7 @@
                                        </label>
                                         <div class="form-group  {{ $links->features['bg_image'] == '' ? 'collapse' : ''  }}">
 
-                                            <img src="/{{ ($links == '' ? '' :  $links->features == null) ? '' : $links->features['bg_image']  }}" width="100" height="100" class="border-radius-10" alt="">
+                                            <img src="/{{ (!$links == null ? '' :  $links->features == null) ? '' : $links->features['bg_image']  }}" width="100" height="100" class="border-radius-10" alt="">
                                         </div>
                                     </div>
                         </div>

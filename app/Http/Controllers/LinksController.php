@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Link;
 use App\Models\Restaurant;
+use App\Http\Controllers\HomeController;
 
 use App\Helpers\ImageUploader;
 
@@ -17,11 +18,12 @@ class LinksController extends Controller
         {
             return "no links available";
         }
+        $restaurant=HomeController::getRestaurant();
         $links =$this->getRestaurantLinks() == "no links available" ? array() : $this->getRestaurantLinks();
-        $restaurant = Restaurant::get()->first();
 
         return response()->view('links.explore',['rastuarant'=>$restaurant,'links'=>$links[0]]);
     }
+
 
     public function getRestaurantLinks()
     {
@@ -73,7 +75,13 @@ class LinksController extends Controller
             $links->links = json_encode(array());
 
         }
-        return response()->view('links.create',['links' =>$links[0]]);
+        else
+        {
+            $links = $links[0];
+        }
+
+
+        return response()->view('links.create',['links' =>$links]);
     }
     public function AddLinksFeature(Request $request)
     {

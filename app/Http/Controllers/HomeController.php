@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Restaurant;
 
 use Illuminate\Http\Request;
 
@@ -23,6 +24,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return redirect("/restaurant");
+    }
+
+    public static function getRestaurant()
+    {
+         $restaurant = Restaurant::get()->first();
+        if(!isset($restaurant))
+        {
+            $restaurant = new Restaurant;
+            $restaurant->name="no restaurant added";
+            $restaurant->logo="public/logos/LogoDefault.png";
+        }
+        return $restaurant;
     }
 }

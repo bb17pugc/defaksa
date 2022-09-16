@@ -8,6 +8,7 @@
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Latest compiled and minified CSS -->
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -68,12 +69,19 @@ body
 </head>
 <body>
 
-<div class="container col-md-12 col-sm-12 col-lg-12" >
+<div class="col-md-12 col-sm-12 col-lg-12" >
+
+<br>
+<br>
+<br>
 <div class="logo text-center" >
     <img src="/{{$rastuarant->logo}}" alt="" class="logo" >
 </div>
-<br>
-<br>
+<div class="text-center lbl-link-restaurant-name" >
+<label>
+{{$rastuarant->name}}
+</label>
+</div>
 <div class="container-links" >
     @if(count((array)json_decode($links->links)) > 0)
         @foreach(json_decode($links->links) as $index=>$item)
